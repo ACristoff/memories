@@ -16,6 +16,10 @@ const App = () => {
     dispatch(getPosts());
   }, [dispatch]);
 
+  console.log(process.env.PORT)
+
+  const FOO = process.env.REACT_APP_FOO;
+
   return (
     <Container maxwidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
@@ -34,6 +38,7 @@ const App = () => {
           </Grid>
         </Container>
       </Grow>
+      <Typography> TEST: {FOO}</Typography>
     </Container>
   )
 }
