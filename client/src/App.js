@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core'
 import { useDispatch } from "react-redux";
 
@@ -9,6 +9,7 @@ import memories from './images/memories.png'
 import useStyles from './styles';
 
 const App = () => {
+  const [currentId, setCurrentId] = useState(null);
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -17,8 +18,6 @@ const App = () => {
   }, [dispatch]);
 
   console.log(process.env.PORT)
-
-  const FOO = process.env.REACT_APP_FOO;
 
   return (
     <Container maxwidth="lg">
@@ -38,7 +37,6 @@ const App = () => {
           </Grid>
         </Container>
       </Grow>
-      <Typography> TEST: {FOO}</Typography>
     </Container>
   )
 }
