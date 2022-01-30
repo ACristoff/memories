@@ -16,27 +16,30 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: ''
   });
   const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
-  const classes = useStyles();  
   const dispatch = useDispatch();
+  const classes = useStyles(); 
+
 
   useEffect(() => {
     if(post) setPostData(post);
   }, [post])
 
   const clear = () => {
-    setPostData({...postData, creator: '', title: '', message: '', tags: '', selectedFile: '' });
     setCurrentId(null)
+    setPostData({...postData, creator: '', title: '', message: '', tags: '', selectedFile: '' });
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (currentId === 0) {
+    if (currentId) {
       dispatch(updatePost(currentId, postData));
+      clear();
     } else {
       dispatch(createPost(postData));
+      clear();
     }
-    clear();
+
   }
 
 
