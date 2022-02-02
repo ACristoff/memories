@@ -18,10 +18,14 @@ app.use(cors());
 // http://localhost:3001/posts
 app.use('/posts', postRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Hello to Memories API');
+});
+
 const CONNECTION_URL  = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
-const FOO = process.env.FOO
+const FOO = process.env.FOO;
 
 mongoose.connect(CONNECTION_URL, { useNewURlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-  .catch((error) => console.log(error.message))
+  .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT} WOOP WOOP`)))
+  .catch((error) => console.log(error.message));
