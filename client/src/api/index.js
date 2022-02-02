@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const url = 'https://memories-project-acristoff.herokuapp.com/posts';
+//for deployment
+//const url = 'https://memories-project-acristoff.herokuapp.com/posts';
+const url = 'http://localhost:3001/posts';
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost); 
