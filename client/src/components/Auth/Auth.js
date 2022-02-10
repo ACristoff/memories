@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { signin, signup } from '../../actions/auth';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Icon from './Icon';
@@ -28,17 +29,23 @@ const Auth = () => {
 
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword )
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  }
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
+  };
 
-  const handleChange = () => {
-    
+  const handleChange = (event) => {
+    setFormData({...formData, [event.target.name]: event.target.value})
   }
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false)
+    setShowPassword(false)
   }
 
   const googleSuccess = async (res) => {
