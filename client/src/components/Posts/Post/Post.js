@@ -61,7 +61,6 @@ const Post = ({ post, setCurrentId }) => {
             Delete
           </Button>
         }
-        
       </CardActions>      
     </Card>
   )
