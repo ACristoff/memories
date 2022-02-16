@@ -30,14 +30,16 @@ const Home = () => {
   const classes = useStyles();
 
 
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  // }, [currentId, dispatch]);
 
   const searchPost = () => {
     if(search.trim() || tags) {
       //dispatch -> fetch search post
       dispatch(getPostsBySearch({ search, tags: tags.join(',') }))
+      navigate(`/posts/search?=${search || 'none'}&tags=${tags.join(',') }`)
+      
     } else {
       navigate('/')
     }
@@ -62,7 +64,7 @@ const Home = () => {
 
   return (
     <Grow in>
-      <Container maxWidth='xl'>
+      <Container maxWidth='false'>
         <Grid container justify="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} sm={6} md={9}>
             <Posts setCurrentId={setCurrentId} />
@@ -75,7 +77,7 @@ const Home = () => {
             </AppBar>
             <Form  currentId={currentId} setCurrentId={setCurrentId}/>
             <Paper elevation={6}>
-              <Pagination />
+              <Pagination page={page} />
             </Paper>
           </Grid>
         </Grid>
