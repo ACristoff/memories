@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:3001'})
+const API = axios.create({ baseURL: 'http://localhost:3001'});
 //for deployment
 //const API =  axios.create({ baseURL: 'https://memories-project-acristoff.herokuapp.com'});
+//for development
+// const API = axios.create({ baseURL: 'http://localhost:3001'});
 
 //sends a token ahead of these requests
 API.interceptors.request.use((req) => {

@@ -1,0 +1,18 @@
+SERVER:
+
+"start": "nodemon index.js" 
+changed to 
+"start": "node index.js"
+for heroku deployment
+
+run heroku login
+git add .
+git commit -m "make it better"
+git push heroku master
+
+CLIENT: 
+
+_redirects file:
+/* /index.html 200
+
+API: change to heroku URL
