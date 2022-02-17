@@ -22,6 +22,20 @@ export const getPosts = async (req, res) => {
   }
 };
 
+
+export const getPost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const post = await PostMessage.findById(id)
+
+    console.log(post)
+
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+};
 //  query => /posts?page=1 => page = 1
 //  params => /posts/:id = /posts/123 => id = 123
 
@@ -39,6 +53,7 @@ export const getPostsBySearch = async (req, res) => {
   }
 }
 
+
 export const createPost = async (req, res) => {
   const post = req.body;
 
@@ -52,6 +67,7 @@ export const createPost = async (req, res) => {
     res.status(409).json({message: error.message});
   }
 };
+
 
 export const updatePost = async (req, res) => {
   const { id: _id } = req.params;
@@ -78,6 +94,7 @@ export const deletePost = async (req, res) => {
 
   res.json({ message: 'Post delted succesfully'})
 }
+
 
 export const likePost = async (req, res) => {
 
