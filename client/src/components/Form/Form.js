@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // import moment from 'moment';
 
 import useStyles from './styles';
@@ -16,9 +17,10 @@ const Form = ({ currentId, setCurrentId }) => {
     selectedFile: ''
     // createdAt: ''
   });
-  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+  const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null)
   const dispatch = useDispatch();
   const classes = useStyles(); 
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('profile'))
 
 
@@ -39,7 +41,7 @@ const Form = ({ currentId, setCurrentId }) => {
       clear();
     } else {
       // setPostData({...postData, createdAt: moment()});
-      dispatch(createPost({...postData, name: user?.result?.name}));
+      dispatch(createPost({...postData, name: user?.result?.name}, navigate));
       clear();
     }
   };
