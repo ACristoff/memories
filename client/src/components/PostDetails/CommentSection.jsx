@@ -8,13 +8,16 @@ import useStyles from './styles';
 const CommentSection = ({ post }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const [comments, setComments] = useState([1, 2, 3, 4]);
+  const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState('')
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const newComment = `${user.result.name}: ${comment}`
-    dispatch(commentPost(newComment, post._id))
+    const newComments = await dispatch(commentPost(newComment, post._id));
+
+    setComments(newComments);
+    setComment('');
   }
 
 
@@ -25,25 +28,28 @@ const CommentSection = ({ post }) => {
           <Typography gutterBottom variant="h6">Comments</Typography>
           {comments.map((comment, index) => (
             <Typography key={index} gutterBottom variant="subtitle1">
-              Comment {index}
+              {comment}
             </Typography>
           )) }
         </div>
-        <div style={{ width: '70%'}}>
-          <Typography gutterBottom variant="h6">Write a comment</Typography>
-          <TextField 
-            fullWidth
-            rows={4}
-            variant='outlined'
-            label='Comment'
-            multiline
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <Button style={{marginTop: '10px'}} fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
-            Post comment
-          </Button>
-        </div>
+        {user?.result?.name && (
+          <div style={{ width: '70%'}}>
+            <Typography gutterBottom variant="h6">Write a comment</Typography>
+            <TextField 
+              fullWidth
+              rows={4}
+              variant='outlined'
+              label='Comment'
+              multiline
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <Button style={{marginTop: '10px'}} fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
+              Post comment
+            </Button>
+          </div>
+          )
+        }
       </div>
     </div>
   )
