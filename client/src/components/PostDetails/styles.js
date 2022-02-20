@@ -40,5 +40,14 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between'
   },
-  commentsInnerContainer: { height: '200px', overflowY: 'auto', marginRight: '30px'}
+  commentsInnerContainer: { height: '200px', overflowY: 'auto', marginRight: '30px'},
+  recommendedCard: { margin: '20px', cursor: 'pointer', borderRadius: '15px', padding: '15px', maxHeight: '300px', width: '250px' },
+  recommendedMedia: {
+    height: 0,
+    paddingTop: '60%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundBlendMode: 'darken',
+    justifySelf: 'center',
+    margin: 'auto'
+  }
 }));
