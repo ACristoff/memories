@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:3001'});
+const API = axios.create({ baseURL: 'https://memories-project-acristoff.herokuapp.com'});
 //for deployment
 //const API =  axios.create({ baseURL: 'https://memories-project-acristoff.herokuapp.com'});
 //for development
